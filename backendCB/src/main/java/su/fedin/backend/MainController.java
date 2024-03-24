@@ -20,11 +20,11 @@ public class MainController {
     }
 
     @GetMapping("/hello/{name}")
-    ResponseEntity<HelloDTO> hello(@PathVariable String name){
+    ResponseEntity<Object> hello(@PathVariable String name){
         if (status <= 400)
-            return new ResponseEntity<HelloDTO>(new HelloDTO(name), HttpStatusCode.valueOf(status));
+            return new ResponseEntity<Object>(new HelloDTO(name), HttpStatusCode.valueOf(status));
 
-        return new ResponseEntity<HelloDTO>(HttpStatus.valueOf(status));
+        return new ResponseEntity<Object>("Status code: " + status, HttpStatus.valueOf(status));
 
     }
 
@@ -33,7 +33,7 @@ public class MainController {
         if (status < 100 || status >= 600)
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         this.status = status;
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<String>("Status changed on: " + status,HttpStatus.OK);
     }
 
     @Data
