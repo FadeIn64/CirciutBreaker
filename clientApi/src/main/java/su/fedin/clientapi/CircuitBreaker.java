@@ -1,10 +1,13 @@
 package su.fedin.clientapi;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.HttpServerErrorException;
 
 @Component
+@Scope("prototype")
 public class CircuitBreaker {
     @Value("${circuitbreaker.milescheck}")
     private Long milesCheck;
@@ -16,7 +19,7 @@ public class CircuitBreaker {
     long errorTimestamp;
 
 
-    public void handleException(HttpServerErrorException e){
+    public void handleException(HttpClientErrorException e){
         if (!e.getStatusCode().is5xxServerError()) return;
 
         failures++;

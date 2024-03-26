@@ -1,11 +1,10 @@
 package su.fedin.clientapi;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ServerProperties {
+public class ExternalServerProperties {
 
     @Value("${backend.server.domain}")
     String domain;
