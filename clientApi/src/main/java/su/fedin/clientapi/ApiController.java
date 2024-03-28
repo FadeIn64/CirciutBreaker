@@ -22,5 +22,4 @@ public class ApiController {
             return requestPublisher.hello(name);
         return new ResponseEntity<String>("Server is Unavailable", HttpStatus.SERVICE_UNAVAILABLE);
     }
-
 }
